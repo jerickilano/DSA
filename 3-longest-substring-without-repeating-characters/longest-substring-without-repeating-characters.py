@@ -1,6 +1,6 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        # Sliding Window + HashMap
+        # Variable Sliding Window + HashMap
         # if invalid: keep moving left until valid (no repeats)
         seen = {}
         l = 0

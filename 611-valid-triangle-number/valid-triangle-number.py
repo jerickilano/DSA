@@ -1,22 +1,21 @@
 class Solution:
     def triangleNumber(self, nums: List[int]) -> int:
-        # Two Pointer
-        # Triangle if: sum of any 2 sides is greater than the third side
+        # 3 pointer + sort
+        # triangle if sums of any two sides is greater than 3rd side
         # [2,2,3,4]
-        #  l
-        #        r
-        #      m
+        #  L   R i
         nums.sort()
         count = 0
-        # r is index of the largest side (c)
-        for r in range(len(nums) - 1, 1, -1):
-            l, m = 0, r - 1
-            while l < m:
-                if nums[l] + nums[m] > nums[r]:
-                    count += m - l # because numbers in between can interchange
-                    m -= 1
+        for i in range(len(nums) - 1, 1, -1):
+            l, r = 0, i - 1
+            while r > l:
+                sums = nums[l] + nums[r]
+                # print(l, r, i)
+                if sums > nums[i]:
+                    count += r - l
+                    r -= 1
                 else:
                     l += 1
+    
         return count
-
-        
+            

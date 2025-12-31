@@ -1,20 +1,27 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        # Two pointer
-        left = 0
-        right = len(height) - 1
-        current_max = 0
-        
-        while left < right:
-            width = right - left
-            min_height = min(height[left], height[right])
-            current_area = width * min_height
-            
-            current_max = max(current_max, current_area)
-            
-            if height[left] < height[right]:
-                left += 1
+        # Two Pointer approach Converging
+        # length = 0
+        # height = 0
+        # max_area = 0
+        # [1,8,6,2,5,4,8,3,7]
+        #  L
+        #                  R
+        l, r = 0, len(height) - 1
+        max_area = 0
+        while l < r:
+            width = r - l
+            heights = min(height[l], height[r])
+            area = width * heights
+            #print(width, heights, area)
+
+            max_area = max(max_area, area)
+
+            # shrink based on certain conditions
+            if height[l] < height[r]:
+                l += 1
             else:
-                right -= 1
+                r -= 1
         
-        return current_max
+        return max_area
+            

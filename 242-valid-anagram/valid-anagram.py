@@ -2,6 +2,7 @@ class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         # Time: O(n + m)
         # Space: O(1)
+        # Array size 26/ASCII values + or -/go thru array/if val != 0 then False/
         if len(s) != len(t):
             return False
 

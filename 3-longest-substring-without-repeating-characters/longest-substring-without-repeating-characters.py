@@ -1,17 +1,23 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        # Variable Sliding Window (For Loop) + HashMap
-        l = 0
-        seen = {}
-        max_count = 0
+        # Time: O(n) Space: O(n)
+        # Sliding Window
+        # left at 0, right iterate
+        # Each iteration: add to set and get the max length between left & right
+        # Check in each iteration: while right value is seen in set, move left += 1
+        if not s:
+            return 0
 
-        for r in range(len(s)):
-            seen[s[r]] = seen.get(s[r], 0) + 1
+        seen = set()
+        left = 0
+        max_len = 0
 
-            while seen[s[r]] > 1:
-                seen[s[l]] -= 1
-                l += 1
+        for right in range(len(s)):
+            while s[right] in seen:
+                seen.remove(s[left])
+                left += 1
 
-            max_count = max(max_count, r - l + 1)
-
-        return max_count
+            seen.add(s[right])
+            max_len = max(max_len, right - left + 1)
+            
+        return max_len

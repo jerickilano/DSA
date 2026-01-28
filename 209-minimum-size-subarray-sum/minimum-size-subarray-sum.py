@@ -21,4 +21,3 @@ class Solution:
             return 0
 
         return min_size
-
